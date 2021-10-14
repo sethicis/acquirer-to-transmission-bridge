@@ -53,18 +53,18 @@ class TorrentRequest:
             return TorrentRequestStatus.STOPPED if torrent.progress != 1 else TorrentRequestStatus.PENDING_REVIEW
 
     def __str__(self) -> str:
-        return f"""
-        class: {self.__class__}
-        hash: {self.hash}
-        status: {self.status}
-        type: {self.type}
-        id: {self.id}
-        name: {self.name}
-        description: {self.description}
-        target_name: {self.target_name}
-        computed_name: {self.computed_name}
-        cur_dir: {self.cur_dir}
-        dest_dir: {self.dest_dir}
-        created_at: {self.created_at}
-        updated_at: {self.updated_at}
-        """
+        return (
+        f'{self.__class__}\n'
+        f'hash: {self.hash}\n'
+        f'status: {self.status}\n'
+        f'type: {self.type}\n'
+        f'id: {self.id}\n'
+        f'name: {self.name}\n'
+        f'description: {self.description}\n'
+        f'target_name: {self.target_name}\n'
+        f'computed_name: {self.computed_name}\n'
+        f'cur_dir: {self.cur_dir}\n'
+        f'dest_dir: {self.dest_dir}\n'
+        f'created_at: {self.created_at}\n'
+        f'updated_at: {self.updated_at}\n'
+        )
