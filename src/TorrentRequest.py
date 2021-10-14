@@ -5,16 +5,6 @@ from transmission_rpc.torrent import Status, Torrent
 from .Enums import TorrentRequestStatus, TorrentType
 
 
-def __parse_torrent_status(torrent: Torrent) -> TorrentRequestStatus:
-    status = torrent.status
-    if status.download_pending or status.downloading:
-        return TorrentRequestStatus.DOWNLOADING    
-    elif status.seed_pending or status.seeding:
-        return TorrentRequestStatus.PENDING_REVIEW
-    else:
-        return TorrentRequestStatus.STOPPED if torrent.progress != 1 else TorrentRequestStatus.PENDING_REVIEW
-
-
 class TorrentRequest:
     def __init__(
         self,
@@ -49,7 +39,16 @@ class TorrentRequest:
         return cls(
             hash=t.hashString,
             name=t.name if t.name is not t.hashString else None,
-            status=__parse_torrent_status(t),
+            status=cls.__parse_torrent_status(t),
             cur_dir=t.download_dir
         )
 
+    @staticmethod
+    def __parse_torrent_status(torrent: Torrent) -> TorrentRequestStatus:
+        status = torrent.status
+        if status.download_pending or status.downloading:
+            return TorrentRequestStatus.DOWNLOADING    
+        elif status.seed_pending or status.seeding:
+            return TorrentRequestStatus.PENDING_REVIEW
+        else:
+            return TorrentRequestStatus.STOPPED if torrent.progress != 1 else TorrentRequestStatus.PENDING_REVIEW
