@@ -3,7 +3,7 @@ from datetime import datetime
 from transmission_rpc.torrent import Torrent
 
 from .Enums import TorrentRequestStatus, TorrentType
-from . import IterMixin
+from .IterMixin import IterMixin
 
 class TorrentRequest(IterMixin):
     def __init__(
