@@ -3,9 +3,8 @@ from datetime import datetime
 from transmission_rpc.torrent import Torrent
 
 from .Enums import TorrentRequestStatus, TorrentType
-from .IterMixin import IterMixin
 
-class TorrentRequest(IterMixin):
+class TorrentRequest:
     def __init__(
         self,
         hash: str,
@@ -54,4 +53,18 @@ class TorrentRequest(IterMixin):
             return TorrentRequestStatus.STOPPED if torrent.progress != 1 else TorrentRequestStatus.PENDING_REVIEW
 
     def __str__(self) -> str:
-        return str(dict(self))
+        return f"""
+        class: {self.__class__}
+        hash: {self.hash}
+        status: {self.status}
+        type: {self.type}
+        id: {self.id}
+        name: {self.name}
+        description: {self.description}
+        target_name: {self.target_name}
+        computed_name: {self.computed_name}
+        cur_dir: {self.cur_dir}
+        dest_dir: {self.dest_dir}
+        created_at: {self.created_at}
+        updated_at: {self.updated_at}
+        """
