@@ -17,4 +17,4 @@ c = Client(username=transmission_config['username'], password=transmission_confi
 
 torrents = c.get_torrents()
 
-print([TorrentRequest.fromTorrent(t) for t in torrents])
+print([dict(TorrentRequest.fromTorrent(t)) for t in torrents])
