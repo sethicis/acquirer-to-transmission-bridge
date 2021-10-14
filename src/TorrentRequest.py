@@ -10,7 +10,7 @@ class TorrentRequest:
         self,
         hash: str,
         status: TorrentRequestStatus,
-        type: TorrentType,
+        type: TorrentType = None,
         id: int = None,
         name: str = None,
         description: str = None,
