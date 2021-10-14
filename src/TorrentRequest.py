@@ -1,11 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
-from transmission_rpc.torrent import Status, Torrent
+from transmission_rpc.torrent import Torrent
 
 from .Enums import TorrentRequestStatus, TorrentType
+from . import IterMixin
 
-
-class TorrentRequest:
+class TorrentRequest(IterMixin):
     def __init__(
         self,
         hash: str,
@@ -52,3 +52,6 @@ class TorrentRequest:
             return TorrentRequestStatus.PENDING_REVIEW
         else:
             return TorrentRequestStatus.STOPPED if torrent.progress != 1 else TorrentRequestStatus.PENDING_REVIEW
+
+    def __str__(self) -> str:
+        return str(dict(self))
