@@ -1,1 +1,2 @@
 transmission_rpc==3.3.0
+firebase-admin<6.0

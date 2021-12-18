@@ -1,5 +1,8 @@
 [transmission]
 username = 
 password = 
+host = 
+port = 
 
 [firestore]
+service_account_key_path = 
